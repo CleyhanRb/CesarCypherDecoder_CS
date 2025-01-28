@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CesarCypherDecoder_CS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0e16155a27306a175bff945aa2d7bd5c7a87c3c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe4641b47cb565ccf4aa30e7aef09f3240974f51")]
 [assembly: System.Reflection.AssemblyProductAttribute("CesarCypherDecoder_CS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CesarCypherDecoder_CS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
