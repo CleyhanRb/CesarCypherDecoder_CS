@@ -13,22 +13,37 @@ namespace CesarCypherDecoder_CS
     {
         public static void Main(string[] args)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            string original = File.ReadAllText("original.txt");
+
+            string[] langs = Directory.GetFiles("lang");
+
+            foreach (string s in langs) {
+
+                string lang = Path.GetFileNameWithoutExtension(s);
+
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                string original = File.ReadAllText("original.txt");
 
 
-            CesarCypherDecoder decoder = new CesarCypherDecoder();
-            decoder.LoadFromFile("liste.txt");
+                CesarCypherDecoder decoder = new CesarCypherDecoder();
+                decoder.LoadFromFile(s);
 
 
-            CesarCypherDecoder.DecodeResult res = decoder.AutoDecode(original);
-            sw.Stop();
+                CesarCypherDecoder.DecodeResult res = decoder.AutoDecode(original);
+                sw.Stop();
 
-            Console.WriteLine("Cesar Code: " + res.code);
-            Console.WriteLine("Score: " + res.score + " %");
-            Console.WriteLine("Done in: " + sw.Elapsed.ToString("mm\\:ss\\.ff"));
-            File.WriteAllText("out.txt", res.sentence);
+                Console.WriteLine("--------------------");
+                Console.WriteLine("Language: " + lang);
+                Console.WriteLine("Cesar Code: " + res.code);
+                Console.WriteLine("Score: " + res.score + " %");
+                Console.WriteLine("Done in: " + sw.Elapsed.ToString("mm\\:ss\\.ff"));
+                File.WriteAllText("out/" + lang + ".txt", res.sentence);
+                Console.WriteLine("--------------------\n");
+
+            }
+
+
+            
 
             Console.ReadKey();
         }

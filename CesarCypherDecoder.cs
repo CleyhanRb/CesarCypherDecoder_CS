@@ -107,6 +107,7 @@ namespace CesarCypherDecoder_CS
                 Console.WriteLine(bar.renderBar());
             }
 
+
             while (tasks.Count(a => a.IsCompleted) < tasks.Count) {
                 bar.Value = tasks.Count(a => a.IsCompleted) + 1;
 
@@ -114,6 +115,13 @@ namespace CesarCypherDecoder_CS
                 Console.WriteLine(bar.renderBar());
             };
             
+            //List<string> lines = new List<string>();
+            //lines.Add("code;score");
+            //foreach (DecodeResult res in results)
+            //{
+            //    lines.Add(res.code + ";" + res.score);
+            //}
+            //File.WriteAllLines("data.csv", lines);
 
             //Task.WaitAll(tasks.ToArray());
 
