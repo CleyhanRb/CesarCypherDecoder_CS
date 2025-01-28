@@ -25,9 +25,9 @@ namespace CesarCypherDecoder_CS
             CesarCypherDecoder.DecodeResult res = decoder.AutoDecode(original);
             sw.Stop();
 
-            Console.WriteLine(res.code);
-            Console.WriteLine(res.score + " %");
-            Console.WriteLine(sw.Elapsed.ToString("mm\\:ss\\.ff"));
+            Console.WriteLine("Cesar Code: " + res.code);
+            Console.WriteLine("Score: " + res.score + " %");
+            Console.WriteLine("Done in: " + sw.Elapsed.ToString("mm\\:ss\\.ff"));
             File.WriteAllText("out.txt", res.sentence);
 
             Console.ReadKey();

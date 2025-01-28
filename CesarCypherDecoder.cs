@@ -86,25 +86,48 @@ namespace CesarCypherDecoder_CS
             Console.WriteLine(bar.renderBar());
 
             List<DecodeResult> results = new List<DecodeResult>();
+
+            List<Task> tasks = new List<Task>();
+
+
             for (int i = 0; i < 26; i++)
             {
-                List<string> res = DecodeSentence(encoded.Split(' ').ToList(), i);
-                string sentence = JoinSentence(res);
-                double score = SentenceRate(res);
+                int code = i;
+                Task t = new Task(() =>
+                {
+                    DecodeResult res = Decode(encoded, code);
+                    results.Add(res);
+                });
+                t.Start();
+                tasks.Add(t);
 
-                results.Add(new DecodeResult { code = i, sentence = sentence, score = score });
-
-                bar.Value = i+1;
-
-
+                
 
                 Console.SetCursorPosition(cursorLocation.X, cursorLocation.Y);
                 Console.WriteLine(bar.renderBar());
             }
 
+            while (tasks.Count(a => a.IsCompleted) < tasks.Count) {
+                bar.Value = tasks.Count(a => a.IsCompleted) + 1;
+
+                Console.SetCursorPosition(cursorLocation.X, cursorLocation.Y);
+                Console.WriteLine(bar.renderBar());
+            };
+            
+
+            //Task.WaitAll(tasks.ToArray());
+
             results.Sort((DecodeResult a, DecodeResult b) => a.score.CompareTo(b.score));
 
             return results.Last();
+        }
+
+        public DecodeResult Decode(string encoded, int code)
+        {
+            List<string> res = DecodeSentence(encoded.Split(' ').ToList(), code);
+            string sentence = JoinSentence(res);
+            double score = SentenceRate(res);
+            return new DecodeResult { code = code, sentence = sentence, score = score };
         }
 
 
